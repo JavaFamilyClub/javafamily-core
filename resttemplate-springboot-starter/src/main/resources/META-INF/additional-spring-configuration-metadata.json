@@ -1,0 +1,67 @@
+{
+   "groups": [
+      {
+         "name": "javafamily.http",
+         "type": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties",
+         "sourceType": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties"
+      }
+   ],
+   "properties": [
+      {
+         "name": "javafamily.http.maxTotalConnect",
+         "type": "java.lang.Integer",
+         "description": "连接池的最大连接数，0代表不限；如果取0，需要考虑连接泄露导致系统崩溃的后果.",
+         "sourceType": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties",
+         "defaultValue": 1000
+      },
+      {
+         "name": "javafamily.http.maxConnectPerRoute",
+         "type": "java.lang.Integer",
+         "description": "每个路由的最大连接数,如果只调用一个地址,可以将其设置为最大连接数.",
+         "defaultValue": 200
+      },
+      {
+         "name": "javafamily.http.connectTimeout",
+         "type": "java.lang.Integer",
+         "description": "指客户端和服务器建立连接的超时时间,ms , 最大约21秒,因为内部tcp在进行三次握手建立连接时,默认tcp超时时间是20秒.",
+         "defaultValue": 20000
+      },
+      {
+         "name": "javafamily.http.readTimeout",
+         "type": "java.lang.Integer",
+         "description": "指客户端从服务器读取数据包的间隔超时时间,不是总读取时间,也就是socket timeout, 单位ms.",
+         "defaultValue": 30000
+      },
+      {
+         "name": "javafamily.http.charset",
+         "type": "java.lang.String",
+         "description": "编码.",
+         "defaultValue": "UTF-8"
+      },
+      {
+         "name": "javafamily.http.retryTimes",
+         "type": "java.lang.Integer",
+         "description": "重试次数.",
+         "defaultValue": 2
+      },
+      {
+         "name": "javafamily.http.connectionRequestTimout",
+         "type": "java.lang.Integer",
+         "description": "从连接池获取连接的超时时间,不宜过长,单位ms.",
+         "defaultValue": 200
+      },
+      {
+         "name": "javafamily.http.keepAliveTargetHost",
+         "type": "java.util.Map<java.lang.String,java.lang.Integer>",
+         "description": "针对不同的网址,长连接保持的存活时间,单位s."
+      },
+      {
+         "name": "javafamily.http.keepAliveTime",
+         "type": "java.lang.Integer",
+         "description": "长连接保持时间 单位s,不宜过长.",
+         "defaultValue": 10
+      }
+   ],
+   "hints": [
+   ]
+}

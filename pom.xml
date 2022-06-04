@@ -12,6 +12,7 @@
     <artifactId>javafamily-core</artifactId>
     <packaging>pom</packaging>
     <version>2.3.2-SNAPSHOT</version>
+
     <modules>
         <module>resttemplate-springboot-starter</module>
     </modules>
