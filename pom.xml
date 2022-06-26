@@ -18,9 +18,9 @@
 
     <modules>
         <module>javafamily-resttemplate-starter</module>
+        <module>javafamily-swagger-springboot-starter</module>
 
         <module>javafamily-tablelens-core</module>
-        <module>javafamily-swagger-springboot-starter</module>
     </modules>
 
     <distributionManagement>
