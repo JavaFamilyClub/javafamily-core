@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>javafamily-core</artifactId>
+        <groupId>club.javafamily</groupId>
+        <version>2.3.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>javafamily-tablelens-core</artifactId>
+
+    <name>javafamily-resttemplate-starter</name>
+    <description>${project.artifactId}</description>
+    <url>https://github.com/JavaFamilyClub/javafamily-core/tree/main/javafamily-tablelens-core</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>club.javafamily</groupId>
+            <artifactId>javafamily-utils-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>club.javafamily</groupId>
+            <artifactId>javafamily-utils-date</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>club.javafamily</groupId>
+            <artifactId>javafamily-utils-reflect</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>club.javafamily</groupId>
+            <artifactId>javafamily-utils-expression</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
