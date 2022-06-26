@@ -18,7 +18,7 @@
 
     <modules>
         <module>javafamily-resttemplate-starter</module>
-        
+
         <module>javafamily-tablelens-core</module>
     </modules>
 
