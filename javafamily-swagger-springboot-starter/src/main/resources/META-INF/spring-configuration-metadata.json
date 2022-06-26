@@ -1,0 +1,332 @@
+{
+   "hints": [],
+   "groups": [
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger",
+         "type": "club.javafamily.swagger.properties.SwaggerConfigProperties"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.authorization",
+         "type": "club.javafamily.swagger.properties.SwaggerConfigProperties$Authorization"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.contact",
+         "type": "club.javafamily.swagger.properties.SwaggerConfigProperties$Contact"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.global-response-message",
+         "type": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.ui-config",
+         "type": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig"
+      }
+   ],
+   "properties": [
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": true,
+         "name": "javafamily.swagger.apply-default-response-messages",
+         "description": "是否使用默认预定义的响应消息 ，默认 true",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Authorization",
+         "defaultValue": "^.*$",
+         "name": "javafamily.swagger.authorization.auth-regex",
+         "description": "需要开启鉴权URL的正则",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Authorization",
+         "defaultValue": "TOKEN",
+         "name": "javafamily.swagger.authorization.key-name",
+         "description": "鉴权传递的Header参数",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Authorization",
+         "defaultValue": "Authorization",
+         "name": "javafamily.swagger.authorization.name",
+         "description": "鉴权策略ID，对应 SecurityReferences ID",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Authorization",
+         "defaultValue": "ApiKey",
+         "name": "javafamily.swagger.authorization.type",
+         "description": "鉴权策略，可选 ApiKey | BasicAuth | None，默认ApiKey",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.base-package",
+         "description": "swagger会解析的包路径",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.base-path",
+         "description": "swagger会解析的url规则",
+         "type": "java.util.List<java.lang.String>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Contact",
+         "defaultValue": "",
+         "name": "javafamily.swagger.contact.email",
+         "description": "联系人email",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Contact",
+         "defaultValue": "",
+         "name": "javafamily.swagger.contact.name",
+         "description": "联系人",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$Contact",
+         "defaultValue": "",
+         "name": "javafamily.swagger.contact.url",
+         "description": "联系人url",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.description",
+         "description": "描述",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.docket",
+         "description": "分组文档",
+         "type": "java.util.Map<java.lang.String,club.javafamily.swagger.properties.SwaggerConfigProperties.DocketInfo>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.enabled",
+         "description": "是否开启swagger",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.exclude-path",
+         "description": "在basePath基础上需要排除的url规则",
+         "type": "java.util.List<java.lang.String>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.global-operation-parameters",
+         "description": "全局参数配置",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalOperationParameter>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.delete",
+         "description": "DELETE 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.get",
+         "description": "GET 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.head",
+         "description": "HEAD 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.options",
+         "description": "OPTIONS 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.patch",
+         "description": "PATCH 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.post",
+         "description": "POST 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.put",
+         "description": "PUT 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$GlobalResponseMessage",
+         "name": "javafamily.swagger.global-response-message.trace",
+         "description": "TRACE 响应消息体",
+         "type": "java.util.List<club.javafamily.swagger.properties.SwaggerConfigProperties.GlobalResponseMessageBody>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.host",
+         "description": "host信息",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "name": "javafamily.swagger.ignored-parameter-types",
+         "description": "忽略的参数类型",
+         "type": "java.util.List<java.lang.Class<?>>"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.license",
+         "description": "许可证",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.license-url",
+         "description": "许可证URL",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.terms-of-service-url",
+         "description": "服务条款URL",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.title",
+         "description": "标题",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": "alpha",
+         "name": "javafamily.swagger.ui-config.api-sorter",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.deep-linking",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.default-model-expand-depth",
+         "type": "java.lang.Integer"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.default-model-rendering",
+         "type": "springfox.documentation.swagger.web.ModelRendering"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.default-models-expand-depth",
+         "type": "java.lang.Integer"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.display-operation-id",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": true,
+         "name": "javafamily.swagger.ui-config.display-request-duration",
+         "description": "是否显示请求耗时，默认false",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.doc-expansion",
+         "description": "可选 none | list",
+         "type": "springfox.documentation.swagger.web.DocExpansion"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.filter",
+         "description": "Boolean=false OR String",
+         "type": "java.lang.Object"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": false,
+         "name": "javafamily.swagger.ui-config.json-editor",
+         "description": "是否启用json编辑器",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.max-displayed-tags",
+         "type": "java.lang.Integer"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.operations-sorter",
+         "type": "springfox.documentation.swagger.web.OperationsSorter"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": 10000,
+         "name": "javafamily.swagger.ui-config.request-timeout",
+         "description": "请求超时时间",
+         "type": "java.lang.Long"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.show-extensions",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": true,
+         "name": "javafamily.swagger.ui-config.show-request-headers",
+         "description": "是否显示请求头信息",
+         "type": "java.lang.Boolean"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "defaultValue": "get,post,put,delete,patch",
+         "name": "javafamily.swagger.ui-config.submit-methods",
+         "description": "支持页面提交的请求类型",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.tags-sorter",
+         "type": "springfox.documentation.swagger.web.TagsSorter"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties$UiConfig",
+         "name": "javafamily.swagger.ui-config.validator-url",
+         "description": "Network",
+         "type": "java.lang.String"
+      },
+      {
+         "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": "",
+         "name": "javafamily.swagger.version",
+         "description": "版本",
+         "type": "java.lang.String"
+      }
+   ]
+}
