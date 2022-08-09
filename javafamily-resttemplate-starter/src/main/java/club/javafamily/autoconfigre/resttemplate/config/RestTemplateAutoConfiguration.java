@@ -213,6 +213,9 @@ public class RestTemplateAutoConfiguration {
    private RestTemplate createRestTemplate(ClientHttpRequestFactory factory) {
       RestTemplate restTemplate = new RestTemplate(factory);
 
+      restTemplate.getMessageConverters()
+         .add(new TextPlainMappingJackson2HttpMessageConverter(objectMapper));
+
       //我们采用RestTemplate内部的MessageConverter
       //重新设置StringHttpMessageConverter字符集，解决中文乱码问题
       modifyDefaultCharset(restTemplate);
