@@ -1,6 +1,7 @@
 package club.javafamily.autoconfigre.resttemplate.config;
 
 import club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties;
+import club.javafamily.autoconfigre.resttemplate.properties.ProxyConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
@@ -10,7 +11,7 @@ import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.*;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -25,20 +26,24 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.*;
+import java.net.Authenticator;
+import java.net.Proxy;
 import java.nio.charset.Charset;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.*;
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
 @ConditionalOnClass(value = {RestTemplate.class, CloseableHttpClient.class})
 @EnableConfigurationProperties(HttpClientProperties.class)
 public class RestTemplateAutoConfiguration {
@@ -59,6 +64,28 @@ public class RestTemplateAutoConfiguration {
       HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
       try {
+         // 代理配置
+         if(httpClientProperties.getProxy() != null) {
+            ProxyConfig proxyConfig = httpClientProperties.getProxy();
+
+            // 配置了代理
+            if(proxyConfig.getType() != null && proxyConfig.getType() != Proxy.Type.DIRECT) {
+               httpClientBuilder.setProxy(new HttpHost(
+                       proxyConfig.getHost(),
+                       proxyConfig.getPort(),
+                       proxyConfig.getSchema())
+               );
+
+               // 配置认证信息
+               if(StringUtils.hasText(proxyConfig.getUserName())
+                       || StringUtils.hasText(proxyConfig.getPassword()))
+               {
+                  Authenticator.setDefault(new ProxyNamePwdAuthenticator(
+                          proxyConfig.getUserName(), proxyConfig.getPassword()));
+               }
+            }
+         }
+
          //设置信任ssl访问
 //         SSLContext sslContext = new SSLContextBuilder()
 //            .loadTrustMaterial(null, (arg0, arg1) -> true).build();
@@ -84,8 +111,8 @@ public class RestTemplateAutoConfiguration {
 
          sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
-         httpClientBuilder.setSslcontext(sslContext);
-         AllowAllHostnameVerifier hostnameVerifier = new AllowAllHostnameVerifier();
+         httpClientBuilder.setSSLContext(sslContext);
+         NoopHostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
          SSLConnectionSocketFactory sslConnectionSocketFactory
             = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
          Registry<ConnectionSocketFactory> socketFactoryRegistry
@@ -204,8 +231,8 @@ public class RestTemplateAutoConfiguration {
       headers.add(new BasicHeader("Accept-Encoding", "gzip,deflate"));
       headers.add(new BasicHeader("Accept-Language", "zh-CN,zh;q=0.9"));
       headers.add(new BasicHeader("Connection", "keep-alive"));
-//      headers.add(new BasicHeader("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
-//      headers.add(new BasicHeader("Accept", "application/json, text/plain, */*"));
+      headers.add(new BasicHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE));
+      headers.add(new BasicHeader("Accept", "application/json, text/plain, */*"));
 
       return headers;
    }

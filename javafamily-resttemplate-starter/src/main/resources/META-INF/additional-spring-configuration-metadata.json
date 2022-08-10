@@ -4,6 +4,11 @@
          "name": "javafamily.http",
          "type": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties",
          "sourceType": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties"
+      },
+      {
+         "name": "javafamily.http.proxy",
+         "type": "club.javafamily.autoconfigre.resttemplate.properties.ProxyConfig",
+         "sourceType": "club.javafamily.autoconfigre.resttemplate.properties.HttpClientProperties"
       }
    ],
    "properties": [
@@ -60,6 +65,37 @@
          "type": "java.lang.Integer",
          "description": "长连接保持时间 单位s,不宜过长.",
          "defaultValue": 10
+      },
+      {
+         "name": "javafamily.http.proxy.type",
+         "type": "java.net.Proxy$Type",
+         "description": "代理类型"
+      },
+      {
+         "name": "javafamily.http.proxy.schema",
+         "type": "java.lang.String",
+         "description": "代理 schema",
+         "defaultValue": "http"
+      },
+      {
+         "name": "javafamily.http.proxy.host",
+         "type": "java.lang.String",
+         "description": "代理主机"
+      },
+      {
+         "name": "javafamily.http.proxy.port",
+         "type": "java.lang.Integer",
+         "description": "代理端口"
+      },
+      {
+         "name": "javafamily.http.proxy.userName",
+         "type": "java.lang.String",
+         "description": "代理认证用户名"
+      },
+      {
+         "name": "javafamily.http.proxy.password",
+         "type": "java.lang.String",
+         "description": "代理认证密码"
       }
    ],
    "hints": [

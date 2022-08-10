@@ -37,10 +37,24 @@ public class HttpClientProperties {
     * 可以设置小一点,不建议设置过大,避免大量无用连接占用内存资源
     */
    private Map<String,Integer> keepAliveTargetHost;
+
    /**
     * 长连接保持时间 单位s,不宜过长
     */
    private int keepAliveTime = 10;
+
+   /**
+    * 代理配置
+    */
+   private ProxyConfig proxy;
+
+   public ProxyConfig getProxy() {
+      return proxy;
+   }
+
+   public void setProxy(ProxyConfig proxy) {
+      this.proxy = proxy;
+   }
 
    public int getMaxTotalConnect() {
       return maxTotalConnect;
