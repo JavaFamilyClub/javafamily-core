@@ -73,6 +73,11 @@
          "defaultValue": 30000
       },
       {
+         "name": "javafamily.http.connManagerShared",
+         "type": "java.lang.Boolean",
+         "description": "是否在多个客户端间共享 Connection Manager."
+      },
+      {
          "name": "javafamily.http.textPlain2Json",
          "type": "java.lang.Boolean",
          "description": "添加 jackson 转换器, 将 text plain mapping 转换为 json.",

@@ -69,6 +69,19 @@ public class HttpClientProperties {
     */
    private Long closeIdleMs = 30 * 1000L;
 
+   /**
+    * 是否在多个客户端间共享 Connection Manager
+    */
+   private Boolean connManagerShared;
+
+   public Boolean getConnManagerShared() {
+      return connManagerShared;
+   }
+
+   public void setConnManagerShared(Boolean connManagerShared) {
+      this.connManagerShared = connManagerShared;
+   }
+
    public Long getCloseIdleMs() {
       return closeIdleMs;
    }

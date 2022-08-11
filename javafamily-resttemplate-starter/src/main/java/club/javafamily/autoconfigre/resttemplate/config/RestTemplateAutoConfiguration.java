@@ -126,6 +126,12 @@ public class RestTemplateAutoConfiguration {
 
          //配置连接池
          httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
+
+         if(httpClientProperties.getConnManagerShared() !=  null) {
+            httpClientBuilder.setConnectionManagerShared(
+               httpClientProperties.getConnManagerShared());
+         }
+
          // 重试次数
          httpClientBuilder.setRetryHandler(new DefaultHttpRequestRetryHandler(
             httpClientProperties.getRetryTimes(), true));
@@ -153,6 +159,15 @@ public class RestTemplateAutoConfiguration {
    private PoolingHttpClientConnectionManager getPoolingHttpClientConnectionManager(
       Registry<ConnectionSocketFactory> socketFactoryRegistry)
    {
+      if (httpClientProperties.getMaxTotalConnect() <= 0) {
+         throw new IllegalArgumentException("invalid maxTotalConnection: "
+            + httpClientProperties.getMaxTotalConnect());
+      }
+      if (httpClientProperties.getMaxConnectPerRoute() <= 0) {
+         throw new IllegalArgumentException("invalid maxConnectionPerRoute: "
+            + httpClientProperties.getMaxConnectPerRoute());
+      }
+
       //使用Httpclient连接池的方式配置(推荐)，同时支持netty，okHttp以及其他http框架
       PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
          = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
@@ -177,15 +192,6 @@ public class RestTemplateAutoConfiguration {
    @Bean
    @ConditionalOnMissingBean
    public ClientHttpRequestFactory clientHttpRequestFactory() {
-      if (httpClientProperties.getMaxTotalConnect() <= 0) {
-         throw new IllegalArgumentException("invalid maxTotalConnection: "
-            + httpClientProperties.getMaxTotalConnect());
-      }
-      if (httpClientProperties.getMaxConnectPerRoute() <= 0) {
-         throw new IllegalArgumentException("invalid maxConnectionPerRoute: "
-            + httpClientProperties.getMaxConnectPerRoute());
-      }
-
       HttpComponentsClientHttpRequestFactory clientHttpRequestFactory
          = new HttpComponentsClientHttpRequestFactory(httpClient());
       // 连接超时
