@@ -53,7 +53,7 @@ public class RestTemplateTests {
 ### 3.1 全部配置项
 
  | 属性 | 类型 | 描述 | 默认值 |
- |   :-:   |   :-:   |   :-:   |   :-:   |
+ |   -   |   -   |   -   |   -   |
  | javafamily.http.maxTotalConnect | java.lang.Integer | 连接池的最大连接数，0代表不限；如果取0，需要考虑连接泄露导致系统崩溃的后果. | 1000 |
  | javafamily.http.maxConnectPerRoute | java.lang.Integer | 每个路由的最大连接数,如果只调用一个地址,可以将其设置为最大连接数. | 200 |
  | javafamily.http.connectTimeout | java.lang.Integer | 指客户端和服务器建立连接的超时时间,ms , 最大约21秒,因为内部tcp在进行三次握手建立连接时,默认tcp超时时间是20秒. | 20000 |
