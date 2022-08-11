@@ -48,7 +48,7 @@ public class RestTemplateTests {
 
 ## 3. 配置
 
-> `javafamily-resttemplate-starter` 支持很多配置项, 基本满足大部分使用场景
+> `javafamily-resttemplate-starter` 已经基本支持了所有配置项, 满足大部分使用场景.
 
 ### 3.1 全部配置项
 
@@ -75,7 +75,7 @@ public class RestTemplateTests {
 
 ### 3.2 自定义
 
-> 当然了, 如果以上配置都无法满足您的需求的话, 您也可以自定义, 因为在自动配置类中, bean 的创建都是弱注入
+> 当然了, 如果以上配置都无法满足您的需求的话, 您也可以自定义, 因为在自动配置类中, bean 的创建都是弱注入!
 > 只要您在 IOC 容器中已经创建了 `restTemplate`, 那此自动配置就不会再创建!
 
 ``` java
