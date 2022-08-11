@@ -52,8 +52,8 @@ public class RestTemplateTests {
 
 ### 3.1 全部配置项
 
- | name | type | description | defaultValue |
- |   -----   |   -----   |   -----   |   -----   |
+ | 属性 | 类型 | 描述 | 默认值 |
+ |   :-:   |   :-:   |   :-:   |   :-:   |
  | javafamily.http.maxTotalConnect | java.lang.Integer | 连接池的最大连接数，0代表不限；如果取0，需要考虑连接泄露导致系统崩溃的后果. | 1000 |
  | javafamily.http.maxConnectPerRoute | java.lang.Integer | 每个路由的最大连接数,如果只调用一个地址,可以将其设置为最大连接数. | 200 |
  | javafamily.http.connectTimeout | java.lang.Integer | 指客户端和服务器建立连接的超时时间,ms , 最大约21秒,因为内部tcp在进行三次握手建立连接时,默认tcp超时时间是20秒. | 20000 |
@@ -65,7 +65,7 @@ public class RestTemplateTests {
  | javafamily.http.keepAliveTime | java.lang.Integer | 长连接保持时间 单位s,不宜过长. | 10 |
  | javafamily.http.textPlain2Json | java.lang.Boolean | 添加 jackson 转换器, 将 text plain mapping 转换为 json. | true |
  | javafamily.http.contentType | java.lang.String | Content Type 请求头. | application/json |
- | javafamily.http.accept | java.lang.Integer | Accept 请求头. | application/json, text/plain, *%2F* |
+ | javafamily.http.accept | java.lang.Integer | Accept 请求头. | application/json, text/plain, \*\/\* |
  | javafamily.http.proxy.type | java.net.Proxy$Type | 代理类型. |  |
  | javafamily.http.proxy.schema | java.lang.String | 代理 schema. | http |
  | javafamily.http.proxy.host | java.lang.String | 代理主机. |  |
