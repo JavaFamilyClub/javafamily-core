@@ -40,6 +40,7 @@ import java.nio.charset.Charset;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 @ConditionalOnClass(value = {RestTemplate.class, CloseableHttpClient.class})
@@ -120,14 +121,9 @@ public class RestTemplateAutoConfiguration {
             .register("http", new SocksPlainConnectionSocketFactory(proxyConfig))
             .register("https", sslConnectionSocketFactory).build();
 
-         //使用Httpclient连接池的方式配置(推荐)，同时支持netty，okHttp以及其他http框架
          PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
-            = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-         // 最大连接数
-         poolingHttpClientConnectionManager.setMaxTotal(httpClientProperties.getMaxTotalConnect());
-         // 同路由并发数
-         poolingHttpClientConnectionManager.setDefaultMaxPerRoute(
-            httpClientProperties.getMaxConnectPerRoute());
+            = getPoolingHttpClientConnectionManager(socketFactoryRegistry);
+
          //配置连接池
          httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
          // 重试次数
@@ -147,6 +143,35 @@ public class RestTemplateAutoConfiguration {
       }
 
       return null;
+   }
+
+   /**
+    * 创建连接池
+    * @param socketFactoryRegistry Registry
+    * @return PoolingHttpClientConnectionManager
+    */
+   private PoolingHttpClientConnectionManager getPoolingHttpClientConnectionManager(
+      Registry<ConnectionSocketFactory> socketFactoryRegistry)
+   {
+      //使用Httpclient连接池的方式配置(推荐)，同时支持netty，okHttp以及其他http框架
+      PoolingHttpClientConnectionManager poolingHttpClientConnectionManager
+         = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+      // 最大连接数
+      poolingHttpClientConnectionManager.setMaxTotal(
+         httpClientProperties.getMaxTotalConnect());
+      // 同路由并发数
+      poolingHttpClientConnectionManager.setDefaultMaxPerRoute(
+         httpClientProperties.getMaxConnectPerRoute());
+
+      if(httpClientProperties.getCloseIdleMs() != null
+         && httpClientProperties.getCloseIdleMs() >= 0)
+      {
+         poolingHttpClientConnectionManager.closeIdleConnections(
+            httpClientProperties.getCloseIdleMs(), TimeUnit.MILLISECONDS);
+         poolingHttpClientConnectionManager.closeExpiredConnections();
+      }
+
+      return poolingHttpClientConnectionManager;
    }
 
    @Bean

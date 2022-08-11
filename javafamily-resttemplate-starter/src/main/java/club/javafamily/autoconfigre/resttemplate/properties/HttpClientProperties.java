@@ -64,6 +64,19 @@ public class HttpClientProperties {
     */
    private String accept = "application/json, text/plain, */*";
 
+   /**
+    * 关闭  idle  链接.单位: 豪秒
+    */
+   private Long closeIdleMs = 30 * 1000L;
+
+   public Long getCloseIdleMs() {
+      return closeIdleMs;
+   }
+
+   public void setCloseIdleMs(Long closeIdleMs) {
+      this.closeIdleMs = closeIdleMs;
+   }
+
    public Boolean getTextPlain2Json() {
       return textPlain2Json;
    }

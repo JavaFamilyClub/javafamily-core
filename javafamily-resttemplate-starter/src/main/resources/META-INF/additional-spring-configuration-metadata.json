@@ -67,6 +67,12 @@
          "defaultValue": 10
       },
       {
+         "name": "javafamily.http.closeIdleMs",
+         "type": "java.lang.Long",
+         "description": "关闭 idle 连接的时长(ms).",
+         "defaultValue": 30000
+      },
+      {
          "name": "javafamily.http.textPlain2Json",
          "type": "java.lang.Boolean",
          "description": "添加 jackson 转换器, 将 text plain mapping 转换为 json.",
