@@ -66,7 +66,7 @@ public class RestTemplateTests {
  | javafamily.http.textPlain2Json | java.lang.Boolean | 添加 jackson 转换器, 将 text plain mapping 转换为 json. | true |
  | javafamily.http.contentType | java.lang.String | Content Type 请求头. | application/json |
  | javafamily.http.accept | java.lang.Integer | Accept 请求头. | application/json, text/plain, \*\/\* |
- | javafamily.http.proxy.type | java.net.Proxy$Type | 代理类型. |  |
+ | javafamily.http.proxy.type | java.net.Proxy$Type | 代理类型. DIRECT/HTTP/SOCKS |  |
  | javafamily.http.proxy.schema | java.lang.String | 代理 schema. | http |
  | javafamily.http.proxy.host | java.lang.String | 代理主机. |  |
  | javafamily.http.proxy.port | java.lang.Integer | 代理端口. |  |
