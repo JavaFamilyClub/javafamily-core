@@ -67,35 +67,53 @@
          "defaultValue": 10
       },
       {
+         "name": "javafamily.http.textPlain2Json",
+         "type": "java.lang.Boolean",
+         "description": "添加 jackson 转换器, 将 text plain mapping 转换为 json.",
+         "defaultValue": true
+      },
+      {
+         "name": "javafamily.http.contentType",
+         "type": "java.lang.String",
+         "description": "Content Type 请求头.",
+         "defaultValue": "application/json"
+      },
+      {
+         "name": "javafamily.http.accept",
+         "type": "java.lang.Integer",
+         "description": "Accept 请求头.",
+         "defaultValue": "application/json, text/plain, */*"
+      },
+      {
          "name": "javafamily.http.proxy.type",
          "type": "java.net.Proxy$Type",
-         "description": "代理类型"
+         "description": "代理类型."
       },
       {
          "name": "javafamily.http.proxy.schema",
          "type": "java.lang.String",
-         "description": "代理 schema",
+         "description": "代理 schema.",
          "defaultValue": "http"
       },
       {
          "name": "javafamily.http.proxy.host",
          "type": "java.lang.String",
-         "description": "代理主机"
+         "description": "代理主机."
       },
       {
          "name": "javafamily.http.proxy.port",
          "type": "java.lang.Integer",
-         "description": "代理端口"
+         "description": "代理端口."
       },
       {
          "name": "javafamily.http.proxy.userName",
          "type": "java.lang.String",
-         "description": "代理认证用户名"
+         "description": "代理认证用户名."
       },
       {
          "name": "javafamily.http.proxy.password",
          "type": "java.lang.String",
-         "description": "代理认证密码"
+         "description": "代理认证密码."
       }
    ],
    "hints": [

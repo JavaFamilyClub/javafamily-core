@@ -1,6 +1,7 @@
 package club.javafamily.autoconfigre.resttemplate.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.MediaType;
 
 import java.util.Map;
 
@@ -47,6 +48,45 @@ public class HttpClientProperties {
     * 代理配置
     */
    private ProxyConfig proxy;
+
+   /**
+    * text plain mapping to json
+    */
+   private Boolean textPlain2Json = true;
+
+   /**
+    * Content Type 请求头
+    */
+   private String contentType = MediaType.APPLICATION_JSON_VALUE;
+
+   /**
+    * Accept 请求头
+    */
+   private String accept = "application/json, text/plain, */*";
+
+   public Boolean getTextPlain2Json() {
+      return textPlain2Json;
+   }
+
+   public void setTextPlain2Json(Boolean textPlain2Json) {
+      this.textPlain2Json = textPlain2Json;
+   }
+
+   public String getContentType() {
+      return contentType;
+   }
+
+   public void setContentType(String contentType) {
+      this.contentType = contentType;
+   }
+
+   public String getAccept() {
+      return accept;
+   }
+
+   public void setAccept(String accept) {
+      this.accept = accept;
+   }
 
    public ProxyConfig getProxy() {
       return proxy;

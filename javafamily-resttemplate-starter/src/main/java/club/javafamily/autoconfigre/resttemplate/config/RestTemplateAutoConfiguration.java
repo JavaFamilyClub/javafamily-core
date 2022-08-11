@@ -26,7 +26,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -231,8 +230,14 @@ public class RestTemplateAutoConfiguration {
       headers.add(new BasicHeader("Accept-Encoding", "gzip,deflate"));
       headers.add(new BasicHeader("Accept-Language", "zh-CN,zh;q=0.9"));
       headers.add(new BasicHeader("Connection", "keep-alive"));
-      headers.add(new BasicHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE));
-      headers.add(new BasicHeader("Accept", "application/json, text/plain, */*"));
+
+      if(StringUtils.hasText(httpClientProperties.getContentType())) {
+         headers.add(new BasicHeader("Content-Type", httpClientProperties.getContentType()));
+      }
+
+      if(StringUtils.hasText(httpClientProperties.getAccept())) {
+         headers.add(new BasicHeader("Accept", httpClientProperties.getAccept()));
+      }
 
       return headers;
    }
@@ -240,8 +245,10 @@ public class RestTemplateAutoConfiguration {
    private RestTemplate createRestTemplate(ClientHttpRequestFactory factory) {
       RestTemplate restTemplate = new RestTemplate(factory);
 
-      restTemplate.getMessageConverters()
-         .add(new TextPlainMappingJackson2HttpMessageConverter(objectMapper));
+      if(httpClientProperties.getTextPlain2Json()) {
+         restTemplate.getMessageConverters()
+            .add(new TextPlainMappingJackson2HttpMessageConverter(objectMapper));
+      }
 
       //我们采用RestTemplate内部的MessageConverter
       //重新设置StringHttpMessageConverter字符集，解决中文乱码问题
