@@ -64,7 +64,7 @@ public class RestTemplateTests {
  | javafamily.http.keepAliveTargetHost | java.util.Map<java.lang.String,java.lang.Integer> | 针对不同的网址,长连接保持的存活时间,单位s. |  |
  | javafamily.http.keepAliveTime | java.lang.Integer | 长连接保持时间 单位s,不宜过长. | 10 |
  | javafamily.http.closeIdleMs | java.lang.Long | 关闭 idle 连接的时长(ms). | 30000 |
- | javafamily.http.connManagerShared | java.lang.Boolean | 是否在多个客户端间共享 Connection Manager. |  |
+ | javafamily.http.connManagerShared | java.lang.Boolean | 是否在多个客户端间共享 Connection Manager. | true |
  | javafamily.http.textPlain2Json | java.lang.Boolean | 添加 jackson 转换器, 将 text plain mapping 转换为 json. | true |
  | javafamily.http.contentType | java.lang.String | Content Type 请求头. | application/json |
  | javafamily.http.accept | java.lang.Integer | Accept 请求头. | application/json, text/plain, \*\/\* |
