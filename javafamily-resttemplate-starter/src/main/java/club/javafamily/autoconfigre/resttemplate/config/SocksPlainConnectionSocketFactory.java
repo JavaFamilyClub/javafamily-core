@@ -10,6 +10,11 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Socket;
 
+/**
+ * @author Jack Li
+ * @date 2022/8/10 下午11:44
+ * @description socks proxy support for plain
+ */
 public class SocksPlainConnectionSocketFactory extends PlainConnectionSocketFactory {
 
     private ProxyConfig proxyConfig;

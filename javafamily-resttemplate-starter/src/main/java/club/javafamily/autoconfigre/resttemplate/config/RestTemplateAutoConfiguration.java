@@ -10,7 +10,6 @@ import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.*;
@@ -63,10 +62,10 @@ public class RestTemplateAutoConfiguration {
       HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
       try {
-         // 代理配置
-         if(httpClientProperties.getProxy() != null) {
-            ProxyConfig proxyConfig = httpClientProperties.getProxy();
+         ProxyConfig proxyConfig = httpClientProperties.getProxy();
 
+         // 代理配置
+         if(proxyConfig != null) {
             // 配置了代理
             if(proxyConfig.getType() != null && proxyConfig.getType() != Proxy.Type.DIRECT) {
                httpClientBuilder.setProxy(new HttpHost(
@@ -113,11 +112,12 @@ public class RestTemplateAutoConfiguration {
          httpClientBuilder.setSSLContext(sslContext);
          NoopHostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
          SSLConnectionSocketFactory sslConnectionSocketFactory
-            = new SSLConnectionSocketFactory(sslContext, hostnameVerifier);
+            = new SocksSSLConnectionSocketFactory(sslContext, hostnameVerifier, proxyConfig);
+
          Registry<ConnectionSocketFactory> socketFactoryRegistry
             = RegistryBuilder.<ConnectionSocketFactory>create()
             // 注册http和https请求
-            .register("http", PlainConnectionSocketFactory.getSocketFactory())
+            .register("http", new SocksPlainConnectionSocketFactory(proxyConfig))
             .register("https", sslConnectionSocketFactory).build();
 
          //使用Httpclient连接池的方式配置(推荐)，同时支持netty，okHttp以及其他http框架
