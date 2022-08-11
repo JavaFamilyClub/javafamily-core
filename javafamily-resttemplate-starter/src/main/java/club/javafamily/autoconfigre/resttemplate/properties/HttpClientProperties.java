@@ -72,7 +72,7 @@ public class HttpClientProperties {
    /**
     * 是否在多个客户端间共享 Connection Manager
     */
-   private Boolean connManagerShared;
+   private Boolean connManagerShared = true;
 
    public Boolean getConnManagerShared() {
       return connManagerShared;

@@ -75,7 +75,8 @@
       {
          "name": "javafamily.http.connManagerShared",
          "type": "java.lang.Boolean",
-         "description": "是否在多个客户端间共享 Connection Manager."
+         "description": "是否在多个客户端间共享 Connection Manager.",
+         "defaultValue": true
       },
       {
          "name": "javafamily.http.textPlain2Json",
