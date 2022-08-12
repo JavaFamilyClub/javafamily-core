@@ -113,7 +113,7 @@ public class RestTemplateAutoConfiguration {
          httpClientBuilder.setSSLContext(sslContext);
          NoopHostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
          SSLConnectionSocketFactory sslConnectionSocketFactory
-            = new SocksSSLConnectionSocketFactory(sslContext, hostnameVerifier, proxyConfig);
+            = new SocksSslConnectionSocketFactory(sslContext, hostnameVerifier, proxyConfig);
 
          Registry<ConnectionSocketFactory> socketFactoryRegistry
             = RegistryBuilder.<ConnectionSocketFactory>create()

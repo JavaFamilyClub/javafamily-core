@@ -17,11 +17,11 @@ import java.net.Socket;
  * @date 2022/8/10 下午11:31
  * @description socks proxy support for ssl
  */
-public class SocksSSLConnectionSocketFactory extends SSLConnectionSocketFactory {
+public class SocksSslConnectionSocketFactory extends SSLConnectionSocketFactory {
 
     private ProxyConfig proxyConfig;
 
-    public SocksSSLConnectionSocketFactory(SSLContext sslContext,
+    public SocksSslConnectionSocketFactory(SSLContext sslContext,
                                            HostnameVerifier hostnameVerifier,
                                            ProxyConfig proxyConfig)
     {
@@ -34,22 +34,29 @@ public class SocksSSLConnectionSocketFactory extends SSLConnectionSocketFactory 
         if (proxyConfig != null && proxyConfig.getType() != null) {
             // 需要代理
             return new Socket(new Proxy(proxyConfig.getType(),
-                    new InetSocketAddress(proxyConfig.getHost(), proxyConfig.getPort())));
+               new InetSocketAddress(proxyConfig.getHost(),
+                  proxyConfig.getPort())));
         }
 
         return super.createSocket(context);
     }
 
     @Override
-    public Socket connectSocket(int connectTimeout, Socket socket, HttpHost host, InetSocketAddress remoteAddress,
-                                InetSocketAddress localAddress, HttpContext context)
+    public Socket connectSocket(int connectTimeout,
+                                Socket socket,
+                                HttpHost host,
+                                InetSocketAddress remoteAddress,
+                                InetSocketAddress localAddress,
+                                HttpContext context)
             throws IOException
     {
-        if (proxyConfig != null && proxyConfig.getType() == Proxy.Type.SOCKS) {
+        if (proxyConfig != null && proxyConfig.getType() != null) {
             // make proxy server to resolve host in http url
-            remoteAddress = InetSocketAddress
-                    .createUnresolved(proxyConfig.getHost(), proxyConfig.getPort());
+            remoteAddress = InetSocketAddress.createUnresolved(
+               proxyConfig.getHost(), proxyConfig.getPort());
         }
-        return super.connectSocket(connectTimeout, socket, host, remoteAddress, localAddress, context);
+
+        return super.connectSocket(connectTimeout, socket, host,
+           remoteAddress, localAddress, context);
     }
 }
