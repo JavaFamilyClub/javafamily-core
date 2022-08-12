@@ -12,11 +12,13 @@ import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.*;
+import org.apache.http.impl.conn.DefaultProxyRoutePlanner;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
-import org.apache.http.ssl.SSLContexts;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.ssl.SSLContextBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +35,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.*;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
 import java.net.Authenticator;
 import java.net.Proxy;
 import java.nio.charset.Charset;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -69,11 +70,26 @@ public class RestTemplateAutoConfiguration {
          if(proxyConfig != null) {
             // 配置了代理
             if(proxyConfig.getType() != null && proxyConfig.getType() != Proxy.Type.DIRECT) {
-               httpClientBuilder.setProxy(new HttpHost(
-                       proxyConfig.getHost(),
-                       proxyConfig.getPort(),
-                       proxyConfig.getSchema())
-               );
+
+               final HttpHost proxy = new HttpHost(
+                  proxyConfig.getHost(),
+                  proxyConfig.getPort(),
+                  proxyConfig.getSchema());
+
+               httpClientBuilder.setRoutePlanner(new DefaultProxyRoutePlanner(proxy) {
+
+                  @Override
+                  public HttpHost determineProxy(HttpHost target,
+                                                 HttpRequest request, HttpContext context)
+                     throws HttpException
+                  {
+                     if (target.getHostName().equals(proxyConfig.getHost())) {
+                        return null;
+                     }
+
+                     return super.determineProxy(target, request, context);
+                  }
+               }).build();
 
                // 配置认证信息
                if(StringUtils.hasText(proxyConfig.getUserName())
@@ -86,28 +102,28 @@ public class RestTemplateAutoConfiguration {
          }
 
          //设置信任ssl访问
-//         SSLContext sslContext = new SSLContextBuilder()
-//            .loadTrustMaterial(null, (arg0, arg1) -> true).build();
+         SSLContext sslContext = SSLContextBuilder.create()
+            .loadTrustMaterial(null, (arg0, arg1) -> true).build();
 
-         SSLContext sslContext = SSLContexts.createSystemDefault();
-
-         TrustManager[] trustAllCerts = new TrustManager[] {
-            new X509TrustManager() {
-               @Override
-               public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-               }
-
-               @Override
-               public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-               }
-
-               @Override
-               public X509Certificate[] getAcceptedIssuers() {
-                  return new X509Certificate[0];
-               }
-            }
-         };
-
+//         SSLContext sslContext = SSLContext.getInstance("TLS");
+//
+//         TrustManager[] trustAllCerts = new TrustManager[] {
+//            new X509TrustManager() {
+//               @Override
+//               public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//               }
+//
+//               @Override
+//               public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+//               }
+//
+//               @Override
+//               public X509Certificate[] getAcceptedIssuers() {
+//                  return new X509Certificate[0];
+//               }
+//            }
+//         };
+//
 //         sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
          httpClientBuilder.setSSLContext(sslContext);
