@@ -108,7 +108,7 @@ public class RestTemplateAutoConfiguration {
             }
          };
 
-         sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+//         sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
          httpClientBuilder.setSSLContext(sslContext);
          HostnameVerifier hostnameVerifier
