@@ -10,13 +10,13 @@ import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.*;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHeaderElementIterator;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.ssl.SSLContexts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,9 +89,9 @@ public class RestTemplateAutoConfiguration {
 //         SSLContext sslContext = new SSLContextBuilder()
 //            .loadTrustMaterial(null, (arg0, arg1) -> true).build();
 
-         SSLContext sslContext = SSLContext.getInstance("SSL");
+         SSLContext sslContext = SSLContexts.createSystemDefault();
 
-         TrustManager[] trustAllCerts =new TrustManager[] {
+         TrustManager[] trustAllCerts = new TrustManager[] {
             new X509TrustManager() {
                @Override
                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
@@ -111,7 +111,8 @@ public class RestTemplateAutoConfiguration {
          sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
 
          httpClientBuilder.setSSLContext(sslContext);
-         NoopHostnameVerifier hostnameVerifier = NoopHostnameVerifier.INSTANCE;
+         HostnameVerifier hostnameVerifier
+            = SSLConnectionSocketFactory.getDefaultHostnameVerifier();
          SSLConnectionSocketFactory sslConnectionSocketFactory
             = new SocksSslConnectionSocketFactory(sslContext, hostnameVerifier, proxyConfig);
 
