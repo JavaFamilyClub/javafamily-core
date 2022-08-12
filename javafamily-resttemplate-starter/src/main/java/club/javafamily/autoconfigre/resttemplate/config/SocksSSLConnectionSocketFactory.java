@@ -31,8 +31,8 @@ public class SocksSSLConnectionSocketFactory extends SSLConnectionSocketFactory 
 
     @Override
     public Socket createSocket(HttpContext context) throws IOException {
-        if (proxyConfig != null && proxyConfig.getType() == Proxy.Type.SOCKS) {
-            //需要代理
+        if (proxyConfig != null && proxyConfig.getType() != null) {
+            // 需要代理
             return new Socket(new Proxy(proxyConfig.getType(),
                     new InetSocketAddress(proxyConfig.getHost(), proxyConfig.getPort())));
         }

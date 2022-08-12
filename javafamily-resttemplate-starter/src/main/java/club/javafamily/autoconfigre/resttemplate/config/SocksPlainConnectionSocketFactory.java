@@ -25,7 +25,7 @@ public class SocksPlainConnectionSocketFactory extends PlainConnectionSocketFact
 
     @Override
     public Socket createSocket(HttpContext context) throws IOException {
-        if (proxyConfig != null) {
+        if (proxyConfig != null && proxyConfig.getType() != null) {
             //需要代理
             return new Socket(new Proxy(proxyConfig.getType(),
                     new InetSocketAddress(proxyConfig.getHost(), proxyConfig.getPort())));
