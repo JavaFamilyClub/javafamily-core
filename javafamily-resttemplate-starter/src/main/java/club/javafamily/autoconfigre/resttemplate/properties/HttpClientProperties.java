@@ -20,15 +20,20 @@ public class HttpClientProperties {
     */
    private int connectTimeout = 20 * 1000;
    /**
-    * 指客户端从服务器读取数据包的间隔超时时间,不是总读取时间,也就是socket timeout, 单位ms. 默认 30 s
+    * 指客户端从服务器读取数据包的间隔超时时间,不是总读取时间,也就是socket timeout, 单位ms. 默认 10 s
     */
-   private int readTimeout = 30 * 1000;
+   private int readTimeout = 10 * 1000;
+
+   /**
+    * 指客户端从服务器读取数据包的间隔超时时间,不是总读取时间,也就是socket timeout, 单位ms. 默认 10 s
+    */
+   private int writeTimeout = 10 * 1000;
 
    private String charset = "UTF-8";
    /**
     * 重试次数,默认 2 次
     */
-   private int retryTimes = 2;
+   private Integer retryTimes = 2;
    /**
     * 从连接池获取连接的超时时间,不宜过长,单位ms
     */
@@ -65,6 +70,11 @@ public class HttpClientProperties {
    private String accept = "application/json, text/plain, */*";
 
    /**
+    * 最大 idle 的数量
+    */
+   private Integer maxIdleCount = 5;
+
+   /**
     * 关闭  idle  链接.单位: 豪秒
     */
    private Long closeIdleMs = 30 * 1000L;
@@ -73,6 +83,22 @@ public class HttpClientProperties {
     * 是否在多个客户端间共享 Connection Manager
     */
    private Boolean connManagerShared = true;
+
+   public int getWriteTimeout() {
+      return writeTimeout;
+   }
+
+   public void setWriteTimeout(int writeTimeout) {
+      this.writeTimeout = writeTimeout;
+   }
+
+   public Integer getMaxIdleCount() {
+      return maxIdleCount;
+   }
+
+   public void setMaxIdleCount(Integer maxIdleCount) {
+      this.maxIdleCount = maxIdleCount;
+   }
 
    public Boolean getConnManagerShared() {
       return connManagerShared;
@@ -162,11 +188,11 @@ public class HttpClientProperties {
       this.charset = charset;
    }
 
-   public int getRetryTimes() {
+   public Integer getRetryTimes() {
       return retryTimes;
    }
 
-   public void setRetryTimes(int retryTimes) {
+   public void setRetryTimes(Integer retryTimes) {
       this.retryTimes = retryTimes;
    }
 
