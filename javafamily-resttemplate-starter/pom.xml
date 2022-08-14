@@ -5,7 +5,7 @@
     <parent>
         <artifactId>javafamily-core</artifactId>
         <groupId>club.javafamily</groupId>
-        <version>2.3.2-beta</version>
+        <version>2.3.2-beta.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,11 +14,6 @@
     <name>javafamily-resttemplate-starter</name>
     <url>https://github.com/JavaFamilyClub/javafamily-core/tree/main/javafamily-resttemplate-starter</url>
     <description>javafamily-resttemplate-starter</description>
-
-    <properties>
-        <MAVEN_GPG_KEY>key</MAVEN_GPG_KEY>
-        <MAVEN_GPG_PWD>pwd</MAVEN_GPG_PWD>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -120,12 +115,7 @@
                         </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <keyname>${MAVEN_GPG_KEY}</keyname>
-                    <passphrase>${MAVEN_GPG_PWD}</passphrase>
-                </configuration>
             </plugin>
-
         </plugins>
     </build>
 
