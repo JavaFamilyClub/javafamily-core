@@ -15,6 +15,11 @@
     <url>https://github.com/JavaFamilyClub/javafamily-core/tree/main/javafamily-resttemplate-starter</url>
     <description>javafamily-resttemplate-starter</description>
 
+    <properties>
+        <MAVEN_GPG_KEY>key</MAVEN_GPG_KEY>
+        <MAVEN_GPG_PWD>pwd</MAVEN_GPG_PWD>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,10 +120,10 @@
                         </configuration>
                     </execution>
                 </executions>
-                <!--                    <configuration>-->
-                <!--                        <keyname>${MAVEN_GPG_KEY}</keyname>-->
-                <!--                        <passphrase>${MAVEN_GPG_PWD}</passphrase>-->
-                <!--                    </configuration>-->
+                <configuration>
+                    <keyname>${MAVEN_GPG_KEY}</keyname>
+                    <passphrase>${MAVEN_GPG_PWD}</passphrase>
+                </configuration>
             </plugin>
 
         </plugins>
