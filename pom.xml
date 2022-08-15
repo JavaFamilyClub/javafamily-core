@@ -83,6 +83,7 @@
 
         <okhttp.version>4.9.0</okhttp.version>
         <swagger.version>2.9.2</swagger.version>
+        <fastJson.version>1.2.83</fastJson.version>
 
         <javafamily.utils.version>2.3.2-beta.4</javafamily.utils.version>
     </properties>
@@ -104,6 +105,12 @@
                 <version>${javafamily.utils.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastJson.version}</version>
             </dependency>
 
             <dependency>
