@@ -20,8 +20,7 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -43,6 +42,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 @ConditionalOnClass(CloseableHttpClient.class)
+@ConditionalOnProperty(name = "javafamily.http.client-impl", havingValue = "APACHE")
 public class RestTemplateHttpClientConfig {
 
    private final HttpClientProperties httpClientProperties;

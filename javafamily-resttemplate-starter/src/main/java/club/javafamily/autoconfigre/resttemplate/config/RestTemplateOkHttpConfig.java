@@ -6,8 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -25,6 +24,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 @ConditionalOnClass(OkHttpClient.class)
+@ConditionalOnProperty(name = "javafamily.http.client-impl", havingValue = "OKHTTP3", matchIfMissing = true)
 public class RestTemplateOkHttpConfig {
 
    private final HttpClientProperties httpClientProperties;

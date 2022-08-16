@@ -126,6 +126,12 @@
          "name": "javafamily.http.proxy.password",
          "type": "java.lang.String",
          "description": "代理认证密码."
+      },
+      {
+         "name": "javafamily.http.clientImpl",
+         "type": "club.javafamily.autoconfigre.resttemplate.enums.ClientImplEnum",
+         "description": "客户端实现.",
+         "defaultValue": "OKHTTP3"
       }
    ],
    "hints": [

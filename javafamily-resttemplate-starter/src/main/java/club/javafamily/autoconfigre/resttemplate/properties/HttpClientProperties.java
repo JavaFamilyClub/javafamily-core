@@ -1,5 +1,6 @@
 package club.javafamily.autoconfigre.resttemplate.properties;
 
+import club.javafamily.autoconfigre.resttemplate.enums.ClientImplEnum;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.MediaType;
 
@@ -83,6 +84,19 @@ public class HttpClientProperties {
     * 是否在多个客户端间共享 Connection Manager
     */
    private Boolean connManagerShared = true;
+
+   /**
+    * 客户端实现
+    */
+   private ClientImplEnum clientImpl = ClientImplEnum.OKHTTP3;
+
+   public ClientImplEnum getClientImpl() {
+      return clientImpl;
+   }
+
+   public void setClientImpl(ClientImplEnum clientImpl) {
+      this.clientImpl = clientImpl;
+   }
 
    public int getWriteTimeout() {
       return writeTimeout;
