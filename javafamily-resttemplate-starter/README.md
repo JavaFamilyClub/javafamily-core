@@ -11,7 +11,7 @@
 <dependency>
    <groupId>club.javafamily</groupId>
    <artifactId>javafamily-resttemplate-starter</artifactId>
-   <version>2.3.2-beta.4</version>
+   <version>2.3.2-beta.5</version>
 </dependency>
 ```
 
