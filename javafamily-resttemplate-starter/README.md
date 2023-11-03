@@ -5,6 +5,15 @@
 
 ## 1. 引入依赖
 
+* Maven Central Release
+
+```xml
+<dependency>
+   <groupId>club.javafamily</groupId>
+   <artifactId>javafamily-resttemplate-starter</artifactId>
+   <version>2.3.2-beta.5</version>
+</dependency>
+```
 
 * Maven Central Snapshot 仓库
 
@@ -32,8 +41,6 @@
          </dependency>
       </dependencies>
 ```
-
-* Maven Central Release 仓库(筹备中)
 
 ## 2. 使用
 > RestTemplate 开箱即用, 引入依赖, 直接注入即可
