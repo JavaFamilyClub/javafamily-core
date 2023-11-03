@@ -10,7 +10,7 @@
 ```xml
 <dependency>
    <groupId>club.javafamily</groupId>
-   <artifactId>javafamily-resttemplate-starter</artifactId>
+   <artifactId>javafamily-swagger-springboot-starter</artifactId>
    <version>2.3.2-beta.5</version>
 </dependency>
 ```
