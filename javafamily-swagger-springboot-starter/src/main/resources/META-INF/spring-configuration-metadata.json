@@ -112,6 +112,7 @@
       },
       {
          "sourceType": "club.javafamily.swagger.properties.SwaggerConfigProperties",
+         "defaultValue": true,
          "name": "javafamily.swagger.enabled",
          "description": "是否开启swagger",
          "type": "java.lang.Boolean"

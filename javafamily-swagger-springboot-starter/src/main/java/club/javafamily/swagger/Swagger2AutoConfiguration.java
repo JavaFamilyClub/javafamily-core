@@ -15,6 +15,7 @@
 package club.javafamily.swagger;
 
 import club.javafamily.swagger.properties.SwaggerConfigProperties;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -26,6 +27,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @description Swagger 配置
  */
 @Configuration
+@ConditionalOnProperty(prefix = "javafamily.swagger", name = "enabled", matchIfMissing = true)
 @EnableSwagger2
 @EnableConfigurationProperties(SwaggerConfigProperties.class)
 @Import(DocketConfig.class)
