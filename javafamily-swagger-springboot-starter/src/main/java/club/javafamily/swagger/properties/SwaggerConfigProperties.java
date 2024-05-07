@@ -18,6 +18,10 @@ import java.util.List;
 public class SwaggerConfigProperties {
 
    /**
+    * 是否启用
+    */
+   private Boolean enabled = true;
+   /**
     * 标题
     **/
    private String title = "";
